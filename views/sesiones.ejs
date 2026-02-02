@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesiones</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Bienvenido, <%= user.nombre %></h1>
+<h2>Sesiones disponibles</h2>
+<div class="sesiones">
+  <% sesiones.forEach(s => { %>
+    <div class="sesion-card">
+      <h3><%= s.nombre %></h3>
+      <p>Precio: <%= s.precio %> €</p>
+
+      <% if(user.nombre !== "Invitado") { %>
+        <form action="/carrito/agregar" method="POST">
+          <input type="hidden" name="id" value="<%= s.id %>">
+          <input type="hidden" name="nombre" value="<%= s.nombre %>">
+          <input type="hidden" name="precio" value="<%= s.precio %>">
+          <input type="hidden" name="cantidad" value="1">
+          <button type="submit">Añadir al carrito</button>
+        </form>
+      <% } %>
+    </div>
+  <% }) %>
+</div>
+
+
+
+<p><a href="/">Volver al inicio</a></p>
+    <form action="/logout" method="POST">
+     <button>Cerrar sesión</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de registro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ 
+    <% if (typeof errores !== "undefined" && errores.length) { %>
+
+    <div style="color: red">
+         
+        <p>Por favor, corrige estos errores: </p>
+            <% errores.forEach ((e) => { %>
+                  
+                <li><%= e %></li>
+            <% }) %>
+        </ul>
+    </div>
+    <% } %>
+
+
+    <form action="/form" method="POST"> 
+        <label>Nombre:
+        <input type="text" name="nombre" value="<%= nombre || '' %>"    required /> 
+        </label>
+        <p></p>
+        <label>Email:
+        <input type="text" name="email" value="<%= email || '' %>"    required /> 
+        </label>
+        <p></p>
+        <label>Edad:
+            <input type="number" name="edad" min="0" value="<%= edad || '' %>" />
+        </label>
+        <p></p>
+        <label>Ciudad:
+            <select name="ciudad">
+                <option value="">-- Selecciona --</option>
+                <option value="Madrid" <%= ciudad==='Madrid' ? selected : '' %>>Madrid</option> 
+                <option value="Alicante" <%= ciudad==='Alicante' ? selected : '' %>>Alicante</option>
+                <option value="Murcia" <%= ciudad==='Murcia' ? selected : '' %>>Murcia</option>
+            </select>
+        </label>
+        <p></p>
+        <fieldset>
+            <label><input type="checkbox" name="intereses" value="Meditacion" 
+                <&= (intereses ||[]).includes('meditacion') ? 'checked' :'' % />Meditación</label>
+                
+            <label><input type="checkbox" name="intereses" value="Naturaleza"
+                <&= (intereses ||[]).includes('naturaleza') ? 'checked' :'' % />Conectar con la naturaleza</label>
+        
+           <label><input type="checkbox" name="intereses" value="Manifestacion" 
+                <&= (intereses ||[]).includes('manifestacion') ? 'checked' :'' % />Manifestar</label>
+
+        </fieldset>
+
+        <button type="submit">Enviar</button>
+
+
+
+    </form>
+
+    <p><a href="/">Volver al inicio</a></p>
+

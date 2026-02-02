@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temas</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body.claro{
+            background-color: #fff; color: black;
+        }
+        body.oscuro{
+            background-color: #000000; color: #fff;
+        }
+    </style>
+</head>
+<body class="<%= preferencias === 'oscuro' ? 'oscuro' : 'claro' %>">
+    <h1>Tema actual: <%= preferencias %> </h1>
+    <p>
+        <a href="/preferencias/claro">Tema claro</a>
+        <a href="/preferencias/oscuro">Tema oscuro</a>
+        <a href="/borrar-preferencias">Borrar cookie</a>
+
+    </p>
+    <p>
+        <a href="/login">Ir a login</a>
+    </p>
+</body>
+</html>

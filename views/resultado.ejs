@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado del formulario:</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Resultado del formulario:</h1>
+    
+    <p><strong>Nombre:</strong> <%= nombre || "Sin nombre." %> </p>
+    <p><strong>Email:</strong> <%= email || "Sin email." %> </p>
+
+
+    <% if (edad) { %>
+        
+        <p><strong>Edad:</strong> <%= edad %> </p>
+        <% if (Number(edad) >=18) { %>
+            <p style="color: rgb(149, 58, 183);">Eres mayor de edad ✅</p>
+           
+        <% } else { %>
+            <p style="color: rgb(171, 27, 61);"">Eres menor de edad ⚠️</p>
+            <% } %>
+
+    <% } else { %>
+        <p>No indicaste la edad</p>
+    <% } %>
+    
+
+    
+        <p><strong>Ciudad:</strong> <%= ciudad || "Sin ciudad especificada." %></p>
+    
+     <div>
+        <p><strong>Tus intereses:</strong></p>
+        <% if(!intereses || intereses.length === 0) { %>
+            <p style="color:rgb(220, 18, 65);">Ningún interés especificado</p>
+      <%  } else { %>
+    <ul>
+        <% intereses.forEach((inte) => { %>
+            <li><%= inte %></li>
+        <% }) %>
+
+    </ul>
+<% } %>
+</div>
+   
+   
+<p><a href="/form">Formulario</a></p>
+<p><a href="/">Volver al inicio</a></p>
+
+
+
+
+</body>
+</html>
