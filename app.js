@@ -144,6 +144,26 @@ app.post("/carrito/agregar", (req, res) => {
   res.redirect("/sesiones");
 });
 
+app.post("/checkout", requiereAuth, (req, res) => {
+  req.session.carrito = [];
+  res.send(`
+    <html>
+      <head>
+          <title>Reserva Completada | Sueños Valenti</title>
+          <link rel="stylesheet" href="/styles.css">
+      </head>
+      <body class="oscuro center-screen">
+        <div class="stars"></div>
+        <div class="glass-card" style="text-align: center;">
+            <h2>¡Reserva Confirmada! ✨</h2>
+            <p>Tus sesiones han sido reservadas con éxito. Nos pondremos en contacto contigo pronto.</p>
+            <a href="/sesiones" class="btn mt-2">Volver a las sesiones</a>
+        </div>
+      </body>
+    </html>
+  `);
+});
+
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en: http://localhost:${PORT}`);
 });

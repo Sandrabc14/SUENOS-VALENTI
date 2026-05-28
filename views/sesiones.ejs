@@ -37,22 +37,21 @@
                     <div class="price-badge"><%= s.precio %> €</div>
                     <p style="font-size: 0.95rem;">Un espacio seguro para explorar tu espiritualidad y sanar.</p>
 
-                    <% if(user.nombre !== "Invitado") { %>
-                        <form action="/carrito/agregar" method="POST" style="margin-top: 1rem; width: 100%;">
-                            <input type="hidden" name="id" value="<%= s.id %>">
-                            <input type="hidden" name="nombre" value="<%= s.nombre %>">
-                            <input type="hidden" name="precio" value="<%= s.precio %>">
-                            <input type="hidden" name="cantidad" value="1">
-                            <button type="submit" class="btn" style="padding: 0.6rem; font-size: 0.95rem;">
-                                Añadir al Viaje
-                            </button>
-                        </form>
-                    <% } %>
+                    <!-- Formulario visible para todos (logueados y no logueados) -->
+                    <form action="/carrito/agregar" method="POST" style="margin-top: 1rem; width: 100%;">
+                        <input type="hidden" name="id" value="<%= s.id %>">
+                        <input type="hidden" name="nombre" value="<%= s.nombre %>">
+                        <input type="hidden" name="precio" value="<%= s.precio %>">
+                        <input type="hidden" name="cantidad" value="1">
+                        <button type="submit" class="btn" style="padding: 0.6rem; font-size: 0.95rem;">
+                            Añadir al Viaje
+                        </button>
+                    </form>
                 </div>
             <% }) %>
         </div>
 
-        <% if(user.nombre !== "Invitado" && carrito && carrito.length > 0) { %>
+        <% if(carrito && carrito.length > 0) { %>
             <div class="glass-card" style="margin-top: 3rem; max-width: 100%;">
                 <h3 style="color: var(--primary); text-shadow: var(--neon-glow); margin-bottom: 1.5rem;">Tu Equipaje Espiritual (Carrito)</h3>
                 <table>
@@ -79,6 +78,18 @@
                         </tr>
                     </tbody>
                 </table>
+                
+                <div style="text-align: right; margin-top: 2rem;">
+                    <form action="/checkout" method="POST" style="margin: 0; display: inline-block;">
+                        <button type="submit" class="btn" style="background: linear-gradient(135deg, #52b788, #2d6a4f); text-shadow: none; box-shadow: 0 4px 15px rgba(82, 183, 136, 0.4);">
+                            <% if(user.nombre === "Invitado") { %>
+                                Iniciar Sesión para Pagar
+                            <% } else { %>
+                                Finalizar Reserva
+                            <% } %>
+                        </button>
+                    </form>
+                </div>
             </div>
         <% } %>
 
@@ -89,6 +100,10 @@
                         Cerrar sesión astral
                     </button>
                 </form>
+            <% } else { %>
+                <a href="/login" class="btn" style="background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.5rem 1.5rem; width: auto; box-shadow: none;">
+                    Acceder a tu cuenta
+                </a>
             <% } %>
         </div>
     </main>
