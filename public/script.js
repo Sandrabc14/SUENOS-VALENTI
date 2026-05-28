@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Mobile Hamburger Menu ---
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
+
+
     // --- Theme Toggle (Dark / Light Mode) ---
     const themeToggleBtn = document.getElementById('theme-toggle');
     const body = document.body;

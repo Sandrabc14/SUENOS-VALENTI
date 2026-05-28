@@ -117,12 +117,25 @@ nav {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
+    position: relative;
+    z-index: 100;
+}
+
+.hamburger {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: var(--primary);
+    cursor: pointer;
+    text-shadow: var(--neon-glow);
 }
 
 .nav-links {
     display: flex;
     gap: 1.5rem;
     list-style: none;
+    align-items: center;
 }
 
 .nav-links a {
@@ -153,6 +166,46 @@ nav {
     transform: rotate(20deg) scale(1.1);
     text-shadow: var(--neon-glow);
 }
+
+/* --- Mobile Nav Styles --- */
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem 1.5rem;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        display: none; /* hidden by default on mobile */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: var(--shadow-lg);
+        gap: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 0.8rem;
+    }
+}
+
 
 /* Layout */
 main { 
