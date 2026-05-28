@@ -1,24 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
- <meta charset="UTF-8">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUEÑOS VALENTI</title>
-    <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <h1>Sueños Valenti <h1></h1>
-            <h3>Sesiones grupales para conectar con tu supra conciencia. 
-                No te lo pierdas y suscribete.
-            </h3>
-        <h2>Menú</h2>
-        <ul>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/form">Formulario</a></li>
-            <li><a href="/preferencias">Preferencia</a></li>
+    <meta name="description" content="Sesiones grupales para conectar con tu supraconciencia.">
+    <title>SUEÑOS VALENTI | Conecta con tu Supraconciencia</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="oscuro">
+    <!-- Efecto de estrellas en el fondo -->
+    <div class="stars"></div>
+
+    <nav>
+        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary); text-shadow: var(--neon-glow);">✨ Sueños Valenti</div>
+        <ul class="nav-links">
+            <li><a href="/login">Acceder</a></li>
+            <li><a href="/form">Unirse</a></li>
             <li><a href="/sesiones">Sesiones</a></li>
-
-
+            <li>
+                <button id="theme-toggle" aria-label="Cambiar tema">☀️</button>
+            </li>
         </ul>
-    </body>
+    </nav>
+
+    <main>
+        <header class="hero">
+            <h1>Despierta tu consciencia</h1>
+            <p>Bienvenido a tu refugio espiritual. Aquí encontrarás un espacio seguro y guiado para explorar tu interior a través de meditaciones profundas, sesiones de manifestación y conexiones grupales con la supraconsciencia. Permítete soltar, sanar y brillar como las estrellas.</p>
+        </header>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 3rem;">
+            <a href="/form" class="btn" style="max-width: 250px;">Comenzar el Viaje</a>
+            <a href="/sesiones" class="btn" style="max-width: 250px; background: transparent; border: 1px solid var(--primary); color: var(--primary);">Explorar Sesiones</a>
+        </div>
+    </main>
+
+    <!-- Banner de Cookies -->
+    <div id="cookie-banner">
+        <div style="font-size: 2rem;">🍪</div>
+        <p>Usamos cookies místicas (y algunas técnicas) para asegurar que tengas la mejor experiencia en nuestro plano astral. Al continuar, aceptas nuestra <a href="#" style="text-decoration: underline;">política de energía y cookies</a>.</p>
+        <button id="accept-cookies" class="btn">Aceptar</button>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
 </html>

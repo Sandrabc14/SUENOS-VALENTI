@@ -70,27 +70,7 @@ app.post("/login", (req, res) => {
 
 
 
-app.get('/preferencias/:modo', (req, res) => {
-    const modo = req.params.modo;
-      res.cookie("preferencias", modo, {
-        httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 24 * 7, // 7 días
-    });
-    res.redirect('/preferencias');
-});
 
-app.get('/borrar-preferencias', (req, res) => {
-    res.clearCookie("preferencias");
-
-    res.redirect('/preferencias');
-});
-
-app.get("/preferencias", (req, res) => {
-
-    const preferencias = req.cookies.preferencias || "claro";
-
-    res.render("preferencias", { preferencias });
-});
 
 app.post("/logout", (req, res) => {
 
@@ -151,7 +131,7 @@ const sesiones = [
   { id: 3, nombre: "Sesión manifestación", precio: 30 },
 ];
 
-app.get("/sesiones", requiereAuth, (req, res) => {
+app.get("/sesiones", (req, res) => {
   const user = req.session.user  || { nombre: "Invitado" };
   const carrito = req.session.carrito || [];
   res.render("sesiones", { sesiones, user, carrito });

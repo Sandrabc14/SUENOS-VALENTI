@@ -1,23 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Iniciar Sesión | Sueños Valenti</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
+<body class="oscuro">
+    <div class="stars"></div>
     
-    <% if (error) { %> <p style="color: crimson;"><%=error %></p> 
-<% } %>
-    <form method="POST" action="/login">
-        <label> Usuario: <input name="usuario" required></label><br><br>
-        <label> Contraseña: <input type="password" name="password" required></label>
-        <br><br>
-        <button>Entrar</button>
+    <nav>
+        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary); text-shadow: var(--neon-glow);"><a href="/" style="color:inherit;">✨ Sueños Valenti</a></div>
+        <ul class="nav-links">
+            <li><a href="/">Inicio</a></li>
+            <li><button id="theme-toggle" aria-label="Cambiar tema">☀️</button></li>
+        </ul>
+    </nav>
 
-    </form>
+    <main class="center-screen">
+        <div class="glass-card">
+            <h2>Acceso al Portal</h2>
+            
+            <% if (error) { %> 
+                <div class="error-msg text-center">
+                    <%=error %>
+                </div> 
+            <% } %>
 
-    <p><a href="/">Inicio</a></p>
+            <form method="POST" action="/login">
+                <div class="form-group">
+                    <label>Usuario Cósmico</label>
+                    <input type="text" name="usuario" placeholder="Ingresa tu usuario" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" placeholder="Tu clave de acceso" required>
+                </div>
+                
+                <button class="btn mt-2">Manifestar Entrada</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="/script.js"></script>
 </body>
 </html>

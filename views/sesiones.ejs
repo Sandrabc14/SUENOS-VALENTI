@@ -1,38 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesiones</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Sesiones | Sueños Valenti</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
-    <h1>Bienvenido, <%= user.nombre %></h1>
-<h2>Sesiones disponibles</h2>
-<div class="sesiones">
-  <% sesiones.forEach(s => { %>
-    <div class="sesion-card">
-      <h3><%= s.nombre %></h3>
-      <p>Precio: <%= s.precio %> €</p>
+<body class="oscuro">
+    <div class="stars"></div>
 
-      <% if(user.nombre !== "Invitado") { %>
-        <form action="/carrito/agregar" method="POST">
-          <input type="hidden" name="id" value="<%= s.id %>">
-          <input type="hidden" name="nombre" value="<%= s.nombre %>">
-          <input type="hidden" name="precio" value="<%= s.precio %>">
-          <input type="hidden" name="cantidad" value="1">
-          <button type="submit">Añadir al carrito</button>
-        </form>
-      <% } %>
-    </div>
-  <% }) %>
-</div>
+    <nav>
+        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary); text-shadow: var(--neon-glow);"><a href="/" style="color:inherit;">✨ Sueños Valenti</a></div>
+        <ul class="nav-links">
+            <li><a href="/">Inicio</a></li>
+            <li><button id="theme-toggle" aria-label="Cambiar tema">☀️</button></li>
+        </ul>
+    </nav>
 
+    <main>
+        <header class="hero" style="margin-bottom: 2rem;">
+            <h1>Bienvenido al Plano Astral, <%= user.nombre %></h1>
+            <p>Descubre nuestras sesiones disponibles para elevar tu energía y encontrar paz.</p>
+        </header>
 
+        <div class="sesiones">
+            <% sesiones.forEach(s => { %>
+                <div class="sesion-card">
+                    <div class="icon-large">
+                        <% if (s.nombre.toLowerCase().includes('meditación')) { %> 🧘‍♀️
+                        <% } else if (s.nombre.toLowerCase().includes('alma')) { %> 🌌
+                        <% } else if (s.nombre.toLowerCase().includes('manifestación')) { %> ✨
+                        <% } else { %> 🔮 <% } %>
+                    </div>
+                    
+                    <h3><%= s.nombre %></h3>
+                    <div class="price-badge"><%= s.precio %> €</div>
+                    <p style="font-size: 0.95rem;">Un espacio seguro para explorar tu espiritualidad y sanar.</p>
 
-<p><a href="/">Volver al inicio</a></p>
-    <form action="/logout" method="POST">
-     <button>Cerrar sesión</button>
-    </form>
+                    <% if(user.nombre !== "Invitado") { %>
+                        <form action="/carrito/agregar" method="POST" style="margin-top: 1rem; width: 100%;">
+                            <input type="hidden" name="id" value="<%= s.id %>">
+                            <input type="hidden" name="nombre" value="<%= s.nombre %>">
+                            <input type="hidden" name="precio" value="<%= s.precio %>">
+                            <input type="hidden" name="cantidad" value="1">
+                            <button type="submit" class="btn" style="padding: 0.6rem; font-size: 0.95rem;">
+                                Añadir al Viaje
+                            </button>
+                        </form>
+                    <% } %>
+                </div>
+            <% }) %>
+        </div>
+
+        <% if(user.nombre !== "Invitado" && carrito && carrito.length > 0) { %>
+            <div class="glass-card" style="margin-top: 3rem; max-width: 100%;">
+                <h3 style="color: var(--primary); text-shadow: var(--neon-glow); margin-bottom: 1.5rem;">Tu Equipaje Espiritual (Carrito)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sesión</th>
+                            <th>Aportación</th>
+                            <th>Cant.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let total = 0; %>
+                        <% carrito.forEach(item => { %>
+                            <% total += (item.precio * item.cantidad); %>
+                            <tr>
+                                <td><%= item.nombre %></td>
+                                <td><%= item.precio %> €</td>
+                                <td><%= item.cantidad %></td>
+                            </tr>
+                        <% }) %>
+                        <tr>
+                            <td colspan="2" style="text-align: right; font-weight: bold; color: var(--primary);">Intercambio Total:</td>
+                            <td style="font-weight: bold; color: var(--primary);"><%= total %> €</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        <% } %>
+
+        <div style="display: flex; justify-content: center; margin-top: 3rem;">
+            <% if(user.nombre !== "Invitado") { %>
+                <form action="/logout" method="POST" style="margin: 0;">
+                    <button class="btn" style="background: transparent; border: 1px solid var(--error); color: var(--error); padding: 0.5rem 1.5rem; box-shadow: none;">
+                        Cerrar sesión astral
+                    </button>
+                </form>
+            <% } %>
+        </div>
+    </main>
+
+    <script src="/script.js"></script>
 </body>
 </html>
